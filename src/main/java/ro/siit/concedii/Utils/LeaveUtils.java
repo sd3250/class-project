@@ -12,13 +12,12 @@ public class LeaveUtils {
         this.leave = leave;
     }
 
-    public static Date endLeaveDate(Date date, int noDays){
+    public Date endLeaveDate(Date date, int noDays){
         return null;
     }
 
-    public static int noOfDaysForLeave(Leave leave){
+    public int noOfDaysForLeave(Leave leave){
         return 0;
     }
-
 
 }

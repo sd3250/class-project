@@ -1,6 +1,6 @@
 package ro.siit.concedii.domain;
 
-public class BaseLeavePolicy {
+public abstract class BaseLeavePolicy {
     public static final int ANNUAL = 21;
     public static final int PERYEARDAYS = 2;
     public static final int AFTER10YEARSOFEMPLOYMENT = 2;
