@@ -1,0 +1,38 @@
+[
+  {
+    "id": 345,
+    "nume": "Gigel",
+    "rol": "Junior Dev",
+    "salar": 900
+  },
+  {
+    "id": 346,
+    "nume": "Gigel's Cousin",
+    "rol": "Mid Dev",
+    "salar": 1800
+  },
+  {
+    "id": 347,
+    "nume": "Gigel's Dad",
+    "rol": "Sr Dev",
+    "salar": 2500
+  },
+  {
+    "id": 348,
+    "nume": "Gigel's Grandpa",
+    "rol": "System Architect",
+    "salar": 3500
+  },
+  {
+    "id": 355,
+    "nume": "Gigel's Mum",
+    "rol": "Team Leader",
+    "salar": 2500
+  },
+  {
+    "id": 373,
+    "nume": "Gigel's Sister",
+    "rol": "Sr. Talent Acquisition Partner (aka HR)",
+    "salar": 1200
+  }
+]
