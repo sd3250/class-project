@@ -6,4 +6,4 @@ and nodejs version >=6. Then open up a terminal, change your folder path
 to ./client , and run "npm install" (that may take a few minutes).
 
 Afterwards, run "npm start", and you should have a server up and running on
-localhost:3000.
+localhost:3030 (feel free to change the port in package.json).
