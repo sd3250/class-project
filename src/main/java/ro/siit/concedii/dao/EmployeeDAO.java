@@ -8,5 +8,5 @@ import java.util.Collection;
 public interface EmployeeDAO extends BaseDAO<Employee>{
 
 	Collection<Employee> searchByName(String query);
-	long addBy //	//shout retun id
+//	long addBy //	//shout retun id
 }

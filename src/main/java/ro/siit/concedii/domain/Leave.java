@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  */
 
-public class Leave extends AbstractModel{
+public class Leave extends AbstractModel {
     private Date startDate;
     private int noDays;
     private LeaveType leaveType;
