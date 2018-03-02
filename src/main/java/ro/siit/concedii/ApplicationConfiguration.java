@@ -1,11 +1,10 @@
-package ro.sci.ems;
+package ro.siit.concedii;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import ro.sci.ems.dao.EmployeeDAO;
-import ro.sci.ems.dao.inmemory.IMEmployeeDAO;
-import ro.sci.ems.service.EmployeeService;
+import ro.siit.concedii.dao.EmployeeDAO;
+import ro.siit.concedii.mocking.IMEmployeeDAO;
+import ro.siit.concedii.service.EmployeeService;
 
 @Configuration
 public class ApplicationConfiguration {
