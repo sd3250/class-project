@@ -1,6 +1,7 @@
 package ro.siit.concedii.domain;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * used to define the information needed for an employee.
@@ -113,42 +114,25 @@ public class Employee extends AbstractModel {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        if (!super.equals(o)) return false;
+        Employee employee = (Employee) o;
+        return Double.compare(employee.getSalary(), getSalary()) == 0 &&
+                Objects.equals(getFirstName(), employee.getFirstName()) &&
+                Objects.equals(getLastName(), employee.getLastName()) &&
+                Objects.equals(getBirthDate(), employee.getBirthDate()) &&
+                getGender() == employee.getGender() &&
+                Objects.equals(getEmploymentDate(), employee.getEmploymentDate()) &&
+                Objects.equals(getJobTitle(), employee.getJobTitle());
+    }
+
+    public boolean equals(Employee employee) {
+        if (this.getId() == employee.getId()) {
             return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Employee other = (Employee) obj;
-        if (birthDate == null) {
-            if (other.birthDate != null)
-                return false;
-        } else if (!birthDate.equals(other.birthDate))
-            return false;
-        if (employmentDate == null) {
-            if (other.employmentDate != null)
-                return false;
-        } else if (!employmentDate.equals(other.employmentDate))
-            return false;
-        if (firstName == null) {
-            if (other.firstName != null)
-                return false;
-        } else if (!firstName.equals(other.firstName))
-            return false;
-        if (gender != other.gender)
-            return false;
-        if (jobTitle == null) {
-            if (other.jobTitle != null)
-                return false;
-        } else if (!jobTitle.equals(other.jobTitle))
-            return false;
-        if (lastName == null) {
-            if (other.lastName != null)
-                return false;
-        } else if (!lastName.equals(other.lastName))
-            return false;
-        return (salary == other.salary);
+        }
+        return false;
     }
 
 }

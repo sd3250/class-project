@@ -65,16 +65,25 @@ public class Leave extends AbstractModel {
         this.approved = approved;
     }
 
+
+    public boolean equals(Leave leave) {
+      if (this.employeeID == leave.getId()){
+          return  true;
+      }
+      return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Leave)) return false;
+        if (!super.equals(o)) return false;
         Leave leave = (Leave) o;
-        return noDays == leave.noDays &&
-                employeeID == leave.employeeID &&
-                Objects.equals(startDate, leave.startDate) &&
-                leaveType == leave.leaveType &&
-                Objects.equals(approved, leave.approved);
+        return getNoDays() == leave.getNoDays() &&
+                getEmployeeID() == leave.getEmployeeID() &&
+                Objects.equals(getStartDate(), leave.getStartDate()) &&
+                getLeaveType() == leave.getLeaveType() &&
+                Objects.equals(getApproved(), leave.getApproved());
     }
 
     @Override
