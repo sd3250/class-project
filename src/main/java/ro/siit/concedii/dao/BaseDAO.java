@@ -9,6 +9,7 @@ import java.util.Collection;
 
 public interface BaseDAO<T extends AbstractModel> {
 
+
 	Collection<T> getAll();
 	
 	T findById(Long id);
