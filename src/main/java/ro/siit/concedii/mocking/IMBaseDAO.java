@@ -40,7 +40,7 @@ public class IMBaseDAO<T extends AbstractModel> implements BaseDAO<T> {
 	@Override
 	public boolean update(T model, Long id) {
 		if (findById(id) != null){
-            models.put(model.getId(), model);
+            models.replace(id, findById(id), model);
             return true;
 		}
 		return false;
