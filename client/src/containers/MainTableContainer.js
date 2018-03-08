@@ -16,9 +16,13 @@ class MainTableContainer extends Component {
         const tableContent = tableData.map((angajat) => {
             return <TableRow>
                 <TableRowColumn>{angajat.id}</TableRowColumn>
-                <TableRowColumn>{angajat.nume}</TableRowColumn>
-                <TableRowColumn>{angajat.rol}</TableRowColumn>
-                <TableRowColumn>{angajat.salar}</TableRowColumn>
+                <TableRowColumn>{angajat.firstName}</TableRowColumn>
+                <TableRowColumn>{angajat.lastName}</TableRowColumn>
+                <TableRowColumn>{angajat.birthDate}</TableRowColumn>
+                <TableRowColumn>{angajat.gender}</TableRowColumn>
+                <TableRowColumn>{angajat.employmentDate}</TableRowColumn>
+                <TableRowColumn>{angajat.jobTitle}</TableRowColumn>
+                <TableRowColumn>{angajat.salary}</TableRowColumn>
             </TableRow>
         });
 
@@ -27,9 +31,13 @@ class MainTableContainer extends Component {
                 <TableHeader>
                     <TableRow>
                         <TableHeaderColumn>ID</TableHeaderColumn>
-                        <TableHeaderColumn>Nume</TableHeaderColumn>
-                        <TableHeaderColumn>Rol</TableHeaderColumn>
-                        <TableHeaderColumn>Salar</TableHeaderColumn>
+                        <TableHeaderColumn>firstName</TableHeaderColumn>
+                        <TableHeaderColumn>lastName</TableHeaderColumn>
+                        <TableHeaderColumn>birthDate</TableHeaderColumn>
+                        <TableHeaderColumn>gender</TableHeaderColumn>
+                        <TableHeaderColumn>employmentDate</TableHeaderColumn>
+                        <TableHeaderColumn>jobTitle</TableHeaderColumn>
+                        <TableHeaderColumn>salary</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
                 <TableBody>{tableContent}</TableBody>

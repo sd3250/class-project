@@ -3,13 +3,18 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import MainTableContainer from './containers/MainTableContainer'
 import AngajatiData from './mock_data/angajati.json'
-import logo from './logo.svg';
-import './App.css';
+import logo from './img/logo.svg';
+import './css/App.css';
 
 class App extends Component {
 
   isUserAuthenticated = () => {
-    return false;
+    return true;
+  }
+
+  getUserRole = () => {
+    //return "REGULAR"
+    //return "ADMIN"
   }
 
   getEmployeesData = () => {

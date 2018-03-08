@@ -1,38 +1,53 @@
 [
   {
     "id": 345,
-    "nume": "Gigel",
-    "rol": "Junior Dev",
-    "salar": 900
+    "firstName": "Gigel",
+    "lastName": "Ursache",
+    "birthDate": "Sep 20th 1992",
+    "gender": "M",
+    "employmentDate": "Apr 19th 2017",
+    "jobTitle": "Junior Dev",
+    "salary": 900
   },
   {
     "id": 346,
-    "nume": "Gigel's Cousin",
-    "rol": "Mid Dev",
-    "salar": 1800
+    "firstName": "Maria",
+    "lastName": "Ursache",
+    "birthDate": "Sep 20th 1992",
+    "gender": "F",
+    "employmentDate": "Nov 16th 2017",
+    "jobTitle": "Junior Dev",
+    "salary": 900
   },
   {
     "id": 347,
-    "nume": "Gigel's Dad",
-    "rol": "Sr Dev",
-    "salar": 2500
+    "firstName": "Florin",
+    "lastName": "Campean",
+    "birthDate": "Jan 20th 1991",
+    "gender": "M",
+    "employmentDate": "Dec 20th 2016",
+    "jobTitle": "Junior Dev",
+    "salary": 1050
   },
   {
     "id": 348,
-    "nume": "Gigel's Grandpa",
-    "rol": "System Architect",
-    "salar": 3500
+    "firstName": "Gheorghe",
+    "lastName": "Hagi",
+    "birthDate": "Mar 14th 1990",
+    "gender": "M",
+    "employmentDate": "Dec 23th 2015",
+    "jobTitle": "Mid Dev",
+    "salary": 1800
   },
   {
-    "id": 355,
-    "nume": "Gigel's Mum",
-    "rol": "Team Leader",
-    "salar": 2500
-  },
-  {
-    "id": 373,
-    "nume": "Gigel's Sister",
-    "rol": "Sr. Talent Acquisition Partner (aka HR)",
-    "salar": 1200
+    "id": 349,
+    "firstName": "Ioana",
+    "lastName": "Costea",
+    "birthDate": "Jul 29th 1988",
+    "gender": "F",
+    "employmentDate": "Jul 12th 2014",
+    "jobTitle": "Senior HR",
+    "salary": 1400
   }
+
 ]
