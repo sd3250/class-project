@@ -31,17 +31,17 @@ public interface LeaveService {
 
     public Collection<Leave> listAllByEmployeeNotApproved(Long id);
 
-    public Integer getTotalNumersOfDaysAvailableByEmployee(Employee employee);
+    public Integer getTotalNumberOfDaysAvailableByEmployee(Employee employee);
 
-    public Integer getTotalNumersOfDaysLeftByEmployee(Employee employee);
+    public Integer getTotalNumberOfDaysLeftByEmployee(Employee employee);
 
-    public Integer getTotalNumersOfDaysUsedByEmployee(Employee employee);
+    public Integer getTotalNumberOfDaysUsedByEmployee(Employee employee);
 
-    public Integer getTotalNumersOfDaysAvailableByEmployeeID(Long id);
+    public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id);
 
-    public Integer getTotalNumersOfDaysLeftByEmployeeID(Long id);
+    public Integer getTotalNumberOfDaysLeftByEmployeeID(Long id);
 
-    public Integer getTotalNumersOfDaysUsedByEmployeeID(Long id);
+    public Integer getTotalNumberOfDaysUsedByEmployeeID(Long id);
 
     public boolean approveLeaveByID(Long id);
 

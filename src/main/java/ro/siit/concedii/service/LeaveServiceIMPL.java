@@ -69,32 +69,32 @@ public class LeaveServiceIMPL implements LeaveService {
     }
 
     @Override
-    public Integer getTotalNumersOfDaysAvailableByEmployee(Employee employee) {
+    public Integer getTotalNumberOfDaysAvailableByEmployee(Employee employee) {
         return null;
     }
 
     @Override
-    public Integer getTotalNumersOfDaysLeftByEmployee(Employee employee) {
+    public Integer getTotalNumberOfDaysLeftByEmployee(Employee employee) {
         return null;
     }
 
     @Override
-    public Integer getTotalNumersOfDaysUsedByEmployee(Employee employee) {
+    public Integer getTotalNumberOfDaysUsedByEmployee(Employee employee) {
         return null;
     }
 
     @Override
-    public Integer getTotalNumersOfDaysAvailableByEmployeeID(Long id) {
+    public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id) {
         return null;
     }
 
     @Override
-    public Integer getTotalNumersOfDaysLeftByEmployeeID(Long id) {
+    public Integer getTotalNumberOfDaysLeftByEmployeeID(Long id) {
         return null;
     }
 
     @Override
-    public Integer getTotalNumersOfDaysUsedByEmployeeID(Long id) {
+    public Integer getTotalNumberOfDaysUsedByEmployeeID(Long id) {
         return null;
     }
 
