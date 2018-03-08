@@ -2,6 +2,7 @@ package ro.siit.concedii.dao;
 
 
 import ro.siit.concedii.domain.AbstractModel;
+import ro.siit.concedii.domain.Leave;
 
 import java.util.Collection;
 
@@ -14,7 +15,9 @@ public interface BaseDAO<T extends AbstractModel> {
 	
 	T findById(Long id);
 	
-	T update(T model);
+	T add(T model);
+
+	boolean update (T model, Long id);
 	
 	boolean delete(T model);
 }

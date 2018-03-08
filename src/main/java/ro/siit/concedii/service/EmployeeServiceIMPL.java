@@ -59,21 +59,18 @@ public class EmployeeServiceIMPL implements EmployeeService{
 		LOGGER.debug("Saving: " + employee);
 		validate(employee);
 
-		dao.update(employee);
+		dao.add(employee);
 	}
 
 	@Override
-    /*
-    this will have to be change to updating in db not to delete and save
-     */
 	public boolean update(Employee employee, Long id) throws ValidationException {
-        if (!delete(id)) {
+	    if (dao.update(employee,id)) {
+            LOGGER.debug("Updateing: " + employee);
+            return true;
+        } else {
+            LOGGER.debug("Can't update employee, id not found: " + id);
             return false;
         }
-
-        save(employee);
-        LOGGER.debug("Updateing: " + employee);
-        return true;
 
 	}
 

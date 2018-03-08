@@ -28,13 +28,22 @@ public class IMBaseDAO<T extends AbstractModel> implements BaseDAO<T> {
 	}
 
 	@Override
-	public T update(T model) {
-		if (model.getId() <= 0) {
+	public T add(T model) {
+
 			model.setId(ID.getAndIncrement());
-		}
+
 
 		models.put(model.getId(), model);
 		return model;
+	}
+
+	@Override
+	public boolean update(T model, Long id) {
+		if (findById(id) != null){
+            models.put(model.getId(), model);
+            return true;
+		}
+		return false;
 	}
 
 	@Override
