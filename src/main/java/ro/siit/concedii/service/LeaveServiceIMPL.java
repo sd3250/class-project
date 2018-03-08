@@ -39,32 +39,32 @@ public class LeaveServiceIMPL implements LeaveService {
     }
 
     @Override
-    public Collection<Leave> listAllByEmpoyee(Employee employee) {
+    public Collection<Leave> listAllByEmployee(Employee employee) {
         return null;
     }
 
     @Override
-    public Collection<Leave> listAllByEmpoyeeID(Long id) {
+    public Collection<Leave> listAllByEmployeeID(Long id) {
         return null;
     }
 
     @Override
-    public Collection<Leave> listAllByEmpoyeeApproved(Employee employee) {
+    public Collection<Leave> listAllByEmployeeApproved(Employee employee) {
         return null;
     }
 
     @Override
-    public Collection<Leave> listAllByEmpoyeeApproved(Long id) {
+    public Collection<Leave> listAllByEmployeeApproved(Long id) {
         return null;
     }
 
     @Override
-    public Collection<Leave> listAllByEmpoyeeNotApproved(Employee employee) {
+    public Collection<Leave> listAllByEmployeeNotApproved(Employee employee) {
         return null;
     }
 
     @Override
-    public Collection<Leave> listAllByEmpoyeeNotApproved(Long id) {
+    public Collection<Leave> listAllByEmployeeNotApproved(Long id) {
         return null;
     }
 
@@ -96,5 +96,25 @@ public class LeaveServiceIMPL implements LeaveService {
     @Override
     public Integer getTotalNumersOfDaysUsedByEmployeeID(Long id) {
         return null;
+    }
+
+    @Override
+    public boolean approveLeaveByID(Long id) {
+        return false;
+    }
+
+    @Override
+    public boolean approveLeaveByLeave(Leave leave) {
+        return false;
+    }
+
+    @Override
+    public boolean rejectLeaveByID(Long id) {
+        return false;
+    }
+
+    @Override
+    public boolean rejectLeaveByLeave(Leave leave) {
+        return false;
     }
 }

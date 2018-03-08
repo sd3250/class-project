@@ -19,17 +19,17 @@ public interface LeaveService {
 
     public Collection<Leave> listAll();
 
-    public Collection<Leave> listAllByEmpoyee(Employee employee);
+    public Collection<Leave> listAllByEmployee(Employee employee);
 
-    public Collection<Leave> listAllByEmpoyeeID(Long id);
+    public Collection<Leave> listAllByEmployeeID(Long id);
 
-    public Collection<Leave> listAllByEmpoyeeApproved(Employee employee);
+    public Collection<Leave> listAllByEmployeeApproved(Employee employee);
 
-    public Collection<Leave> listAllByEmpoyeeApproved(Long id);
+    public Collection<Leave> listAllByEmployeeApproved(Long id);
 
-    public Collection<Leave> listAllByEmpoyeeNotApproved(Employee employee);
+    public Collection<Leave> listAllByEmployeeNotApproved(Employee employee);
 
-    public Collection<Leave> listAllByEmpoyeeNotApproved(Long id);
+    public Collection<Leave> listAllByEmployeeNotApproved(Long id);
 
     public Integer getTotalNumersOfDaysAvailableByEmployee(Employee employee);
 
@@ -42,4 +42,12 @@ public interface LeaveService {
     public Integer getTotalNumersOfDaysLeftByEmployeeID(Long id);
 
     public Integer getTotalNumersOfDaysUsedByEmployeeID(Long id);
+
+    public boolean approveLeaveByID(Long id);
+
+    public boolean approveLeaveByLeave(Leave leave);
+
+    public boolean rejectLeaveByID(Long id);
+
+    public boolean rejectLeaveByLeave(Leave leave);
 }
