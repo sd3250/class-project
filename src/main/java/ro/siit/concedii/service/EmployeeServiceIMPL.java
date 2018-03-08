@@ -24,15 +24,18 @@ public class EmployeeServiceIMPL implements EmployeeService{
 
 	private EmployeeDAO dao;
 
+    @Override
 	public Collection<Employee> listAll() {
 		return dao.getAll();
 	}
 
+	@Override
 	public Collection<Employee> search( String query) {
 		LOGGER.debug("Searching for " + query);
 		return dao.searchByName(query);
 	}
 
+    @Override
 	public boolean delete(Long id) {
 		LOGGER.debug("Deleting employee for id: " + id);
 		Employee emp = dao.findById(id);
@@ -44,12 +47,14 @@ public class EmployeeServiceIMPL implements EmployeeService{
 		return false;
 	}
 
+    @Override
 	public Employee get(Long id) {
 		LOGGER.debug("Getting employee for id: " + id);
 		return dao.findById(id);
 
 	}
 
+    @Override
 	public void save(Employee employee) throws ValidationException {
 		LOGGER.debug("Saving: " + employee);
 		validate(employee);
@@ -58,8 +63,14 @@ public class EmployeeServiceIMPL implements EmployeeService{
 	}
 
 	@Override
-	public boolean update(Employee employee, Long id) {
-		return false;
+	public boolean update(Employee employee, Long id) throws ValidationException {
+        if (!delete(id)) {
+            return false;
+        }
+
+        save(employee);
+        LOGGER.debug("Updateing: " + employee);
+        return true;
 
 	}
 
