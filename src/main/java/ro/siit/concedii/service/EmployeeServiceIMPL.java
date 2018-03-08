@@ -56,6 +56,12 @@ public class EmployeeServiceIMPL implements EmployeeService{
 		dao.update(employee);
 	}
 
+	@Override
+	public boolean update(Employee employee, Long id) {
+		return false;
+
+	}
+
 	private void validate(Employee employee) throws ValidationException {
 		Date currentDate = new Date();
 		List<String> errors = new LinkedList<String>();

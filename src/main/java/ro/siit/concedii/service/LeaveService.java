@@ -15,4 +15,6 @@ public interface LeaveService {
     public Leave get(Long id) ;
 
     public void save(Leave leave);
+
+    public boolean update(Leave leave, Long id);
 }
