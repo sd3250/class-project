@@ -7,7 +7,6 @@ import ro.siit.concedii.dao.LeaveDAO;
 import ro.siit.concedii.domain.Leave;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 @Service
@@ -75,7 +74,7 @@ public class LeaveServiceIMPL implements LeaveService {
     public Collection<Leave> listAllByEmployeeID(Long id) {
         Collection<Leave> leaves;
         leaves = listAll();
-        return Collections.singleton(leaves.stream().filter(c -> c.getEmployeeID() == id).collect(Collectors.toList()).get(0));
+        return leaves.stream().filter(c -> c.getEmployeeID() == id).collect(Collectors.toList());
     }
 
 
@@ -83,7 +82,7 @@ public class LeaveServiceIMPL implements LeaveService {
     public Collection<Leave> listAllByEmployeeApproved(Long id) {
         Collection<Leave> leaves;
         leaves = listAll();
-        return Collections.singleton(leaves.stream().filter(c -> c.getEmployeeID() == id && c.getApproved()).collect(Collectors.toList()).get(0));
+        return leaves.stream().filter(c -> c.getEmployeeID() == id && c.getApproved()).collect(Collectors.toList());
     }
 
 
@@ -91,7 +90,7 @@ public class LeaveServiceIMPL implements LeaveService {
     public Collection<Leave> listAllByEmployeeNotApproved(Long id) {
         Collection<Leave> leaves;
         leaves = listAll();
-        return Collections.singleton(leaves.stream().filter(c -> c.getEmployeeID() == id && !c.getApproved()).collect(Collectors.toList()).get(0));
+        return leaves.stream().filter(c -> c.getEmployeeID() == id && !c.getApproved()).collect(Collectors.toList());
 
     }
 
