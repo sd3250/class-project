@@ -19,23 +19,12 @@ public interface LeaveService {
 
     public Collection<Leave> listAll();
 
-    public Collection<Leave> listAllByEmployee(Employee employee);
 
     public Collection<Leave> listAllByEmployeeID(Long id);
 
-    public Collection<Leave> listAllByEmployeeApproved(Employee employee);
-
     public Collection<Leave> listAllByEmployeeApproved(Long id);
 
-    public Collection<Leave> listAllByEmployeeNotApproved(Employee employee);
-
     public Collection<Leave> listAllByEmployeeNotApproved(Long id);
-
-    public Integer getTotalNumberOfDaysAvailableByEmployee(Employee employee);
-
-    public Integer getTotalNumberOfDaysLeftByEmployee(Employee employee);
-
-    public Integer getTotalNumberOfDaysUsedByEmployee(Employee employee);
 
     public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id);
 
