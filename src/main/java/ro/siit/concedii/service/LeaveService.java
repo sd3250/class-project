@@ -31,6 +31,8 @@ public interface LeaveService {
 
     public Integer getTotalNumberOfDaysUsedByEmployeeID(Long id);
 
+    public Integer getMaximumNoDaysForEmployeeID(long id);
+
     public boolean approveLeaveByID(Long id);
 
     public boolean approveLeaveByLeave(Leave leave);

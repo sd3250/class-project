@@ -110,6 +110,11 @@ public class LeaveServiceIMPL implements LeaveService {
     }
 
     @Override
+    public Integer getMaximumNoDaysForEmployeeID(long id) {
+        return null;
+    }
+
+    @Override
     public boolean approveLeaveByID(Long id) {
         return false;
     }
