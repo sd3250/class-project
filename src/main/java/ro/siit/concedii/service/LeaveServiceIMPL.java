@@ -79,7 +79,7 @@ public class LeaveServiceIMPL implements LeaveService {
 
 
     @Override
-    public Collection<Leave> listAllByEmployeeApproved(Long id) {
+    public Collection<Leave> listAllByEmployeeIDApproved(Long id) {
         Collection<Leave> leaves;
         leaves = listAll();
         return leaves.stream().filter(c -> c.getEmployeeID() == id && c.getApproved()).collect(Collectors.toList());
@@ -87,7 +87,7 @@ public class LeaveServiceIMPL implements LeaveService {
 
 
     @Override
-    public Collection<Leave> listAllByEmployeeNotApproved(Long id) {
+    public Collection<Leave> listAllByEmployeeIDNotApproved(Long id) {
         Collection<Leave> leaves;
         leaves = listAll();
         return leaves.stream().filter(c -> c.getEmployeeID() == id && !c.getApproved()).collect(Collectors.toList());

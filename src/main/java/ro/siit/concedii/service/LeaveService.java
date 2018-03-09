@@ -1,6 +1,5 @@
 package ro.siit.concedii.service;
 
-import ro.siit.concedii.domain.Employee;
 import ro.siit.concedii.domain.Leave;
 
 import java.util.Collection;
@@ -22,9 +21,9 @@ public interface LeaveService {
 
     public Collection<Leave> listAllByEmployeeID(Long id);
 
-    public Collection<Leave> listAllByEmployeeApproved(Long id);
+    public Collection<Leave> listAllByEmployeeIDApproved(Long id);
 
-    public Collection<Leave> listAllByEmployeeNotApproved(Long id);
+    public Collection<Leave> listAllByEmployeeIDNotApproved(Long id);
 
     public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id);
 
