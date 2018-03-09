@@ -72,17 +72,15 @@ public class LeaveServiceIMPL implements LeaveService {
 
     @Override
     public Collection<Leave> listAllByEmployeeID(Long id) {
-        Collection<Leave> leaves;
-        leaves = listAll();
-        return leaves.stream().filter(c -> c.getEmployeeID() == id).collect(Collectors.toList());
+        return dao.searchByEmployeeID(id);
     }
 
 
     @Override
     public Collection<Leave> listAllByEmployeeIDApproved(Long id) {
         Collection<Leave> leaves;
-        leaves = listAll();
-        return leaves.stream().filter(c -> c.getEmployeeID() == id && c.getApproved()).collect(Collectors.toList());
+        leaves = dao.searchByEmployeeID(id);
+        return leaves.stream().filter(c -> c.getApproved()).collect(Collectors.toList());
     }
 
 
@@ -90,7 +88,7 @@ public class LeaveServiceIMPL implements LeaveService {
     public Collection<Leave> listAllByEmployeeIDNotApproved(Long id) {
         Collection<Leave> leaves;
         leaves = listAll();
-        return leaves.stream().filter(c -> c.getEmployeeID() == id && !c.getApproved()).collect(Collectors.toList());
+        return leaves.stream().filter(c -> !c.getApproved()).collect(Collectors.toList());
 
     }
 
@@ -116,21 +114,13 @@ public class LeaveServiceIMPL implements LeaveService {
 
     @Override
     public boolean approveLeaveByID(Long id) {
-        return false;
+        return dao.findById(id).getApproved();
     }
 
-    @Override
-    public boolean approveLeaveByLeave(Leave leave) {
-        return false;
-    }
 
     @Override
     public boolean rejectLeaveByID(Long id) {
-        return false;
+        return !dao.findById(id).getApproved();
     }
 
-    @Override
-    public boolean rejectLeaveByLeave(Leave leave) {
-        return false;
-    }
 }

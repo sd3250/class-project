@@ -35,9 +35,7 @@ public interface LeaveService {
 
     public boolean approveLeaveByID(Long id);
 
-    public boolean approveLeaveByLeave(Leave leave);
 
     public boolean rejectLeaveByID(Long id);
 
-    public boolean rejectLeaveByLeave(Leave leave);
 }
