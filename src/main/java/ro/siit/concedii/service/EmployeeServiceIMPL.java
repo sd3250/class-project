@@ -24,7 +24,12 @@ public class EmployeeServiceIMPL implements EmployeeService{
 
 	private EmployeeDAO dao;
 
-    @Override
+	@Override
+	public void createEmployee(Employee employee) {
+		//Trebuie completat
+	}
+
+	@Override
 	public Collection<Employee> listAll() {
 		return dao.getAll();
 	}
@@ -71,6 +76,7 @@ public class EmployeeServiceIMPL implements EmployeeService{
             LOGGER.debug("Can't update employee, id not found: " + id);
             return false;
         }
+
 
 	}
 

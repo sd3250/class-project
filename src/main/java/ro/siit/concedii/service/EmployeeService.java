@@ -16,4 +16,6 @@ public interface EmployeeService {
     public void save(Employee employee)throws ValidationException;
 
     public boolean update(Employee employee, Long id) throws ValidationException;
+
+    void createEmployee(Employee employee);
 }
