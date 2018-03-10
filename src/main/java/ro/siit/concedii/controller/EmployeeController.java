@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ro.siit.concedii.domain.Employee;
 import ro.siit.concedii.domain.Gender;
 import ro.siit.concedii.service.EmployeeService;
+import ro.siit.concedii.service.EmployeeServiceIMPL;
+import ro.siit.concedii.service.ValidationException;
 
 import java.util.Collection;
 import java.util.Date;
@@ -20,47 +22,61 @@ import java.util.List;
 
 @Controller
 public class EmployeeController {
+    private void addData() throws ValidationException {
+        Employee e1 = new Employee("jon", "doe", new Date(), Gender.MALE, new Date(), "dasdsa", 23132);
+        Employee e2 = new Employee("jon", "doe", new Date(), Gender.MALE, new Date(), "dasdsa", 23132);
+        employeeService.save(e1);
+        employeeService.save(e2);
+    }
+
     @Autowired
     private EmployeeService employeeService;
 
     @RequestMapping("/employee")
-    public String employee(@RequestParam(value = "firstname", required = false, defaultValue = "First name")String firstname, Model model,
-                           @RequestParam(value = "lastname", required = false, defaultValue = "Last name") String lastname,
-                           @RequestParam(value = "birthdate", required = false, defaultValue = "War") Date birthdate,
-                           @RequestParam(value = "gender", required = false, defaultValue = "UNSPECIFIED") Gender gender,
-                           @RequestParam(value = "jobTitle", required = false, defaultValue = "War") String jobTitle,
-                           @RequestParam(value = "salary", required = false, defaultValue = "War") double salary){
-
-        model.addAttribute("firstname", firstname);
-        model.addAttribute("lastname", lastname);
-        model.addAttribute("birthdate", birthdate);
-        model.addAttribute("gender", gender);
-        model.addAttribute("jobTitle", jobTitle);
-        model.addAttribute("salary",salary);
+    public String employee(@RequestParam(value = "employee", required = false, defaultValue = "") Employee employee, Model model) throws ValidationException {
+        try {
+            addData();
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("employee", employee);
         return "employeee";
+
     }
-    @RequestMapping(value = "/cages", method = RequestMethod.GET)
-    public String listCages(Model model) {
+
+    @RequestMapping(value = "/employee/all", method = RequestMethod.GET)
+    public String listEmployee(Model model) {
         Collection<Employee> employees = employeeService.listAll();
         model.addAttribute("employees", employees);
-        return "listCages";
+        return "allemployees";
 
     }
 
-    @RequestMapping(value = "/cages", method = RequestMethod.POST)
-    public String createCage(Employee employee, Model model) {
-        Collection<Employee> employees = employeeService.listAll();
-        employeeService.createEmployee(employee);
-        model.addAttribute("employees", employees);
-
-
-        return "listCages";
+    @RequestMapping(value = "/employee/update", method = RequestMethod.POST)
+    public String EmployeeUpdate() {
+        return null;
     }
 
-    @RequestMapping(value = "/prepare/Employee", method = RequestMethod.GET)
-    public String prepareEmployee(Model model) {
-
-        model.addAttribute("emploryee", new Employee());
-        return "createEmployee";
+    @RequestMapping(value = "/employee/delete", method = RequestMethod.POST)
+    public String EmployeeDelete() {
+        return null;
     }
+
+    @RequestMapping(value = "/employee/search", method = RequestMethod.GET)
+    public String EmployeeSearch() {
+
+        return null;
+    }
+
+    @RequestMapping(value = "/employee/validate", method = RequestMethod.GET)
+    public String EmployeeValidate() {
+
+        return null;
+        
+    }
+
+    //get->list all
+    //search->get Search Post form
+    //delete->get
+
 }
