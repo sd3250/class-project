@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class IMBaseDAO<T extends AbstractModel> implements BaseDAO<T> {
+public abstract class IMBaseDAO<T extends AbstractModel> implements BaseDAO<T> {
 	private Map<Long, T> models = new HashMap<Long, T>();
 
 	private static AtomicLong ID = new AtomicLong(System.currentTimeMillis());
