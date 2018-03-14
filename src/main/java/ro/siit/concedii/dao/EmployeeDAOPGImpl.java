@@ -1,8 +1,11 @@
 package ro.siit.concedii.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import ro.siit.concedii.domain.Employee;
+import ro.siit.concedii.service.EmployeeServiceIMPL;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -13,6 +16,8 @@ import java.util.Collection;
  * Created by dan.sabau on 3/14/2018
  */
 public class EmployeeDAOPGImpl implements EmployeeDAO {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeDAOPGImpl.class);
+
 
     private JdbcTemplate jdbcTemplate;
 
@@ -30,6 +35,7 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
         return jdbcTemplate.query("select * from employee", new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+                LOGGER.debug("Searching for all");
                 Employee result = new Employee();
                 result.setId(resultSet.getLong(1));
                 result.setFirstName(resultSet.getString(2));
@@ -49,6 +55,7 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
         return jdbcTemplate.queryForObject("select * from employee where id = ?", new RowMapper<Employee>() {
             @Override
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
+                LOGGER.debug("Searching for + ", id);
                 Employee result = new Employee();
                 result.setId(resultSet.getInt(1));
                 result.setFirstName(resultSet.getString(2));
@@ -69,6 +76,7 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
                 new RowMapper<Long>() {
                     @Override
                     public Long mapRow(ResultSet resultSet, int i) throws SQLException {
+                        LOGGER.debug("adding employee + ", model.getFirstName());
                         return resultSet.getLong(1);
                     }
                 }, model.getFirstName(), model.getLastName(),model.getBirthDate(),model.getGenderToString(), model.getEmploymentDate(), model.getJobTitle(), model.getSalary());
@@ -79,6 +87,7 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
     @Override
     public boolean update(Employee model, Long id) {
         int i = jdbcTemplate.update("update employee set (first_name, last_name, birth_date, gender, employment_date, job_title, salary) = (?, ?, ?, ?, ?, ?, ?)  where id = ?", model.getFirstName(), model.getLastName(),model.getBirthDate(),model.getGenderToString(), model.getEmploymentDate(), model.getJobTitle(), model.getSalary(), model.getId());
+        LOGGER.debug("update employee id + ", model.getId());
         if (i != 0) {
             return true;
         }
@@ -89,6 +98,7 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
     @Override
     public boolean delete(Employee model) {
         int i = jdbcTemplate.update("DELETE FROM employee WHERE id=?", model.getId());
+        LOGGER.debug("delete employee id + ", model.getId());
         if (i != 0 ){
             return true;
         }
