@@ -56,6 +56,25 @@ public class Employee extends AbstractModel {
         this.gender = gender;
     }
 
+    public void setGender(String gender){
+        if (gender.compareTo("MALE") == 0) {
+            this.gender = Gender.MALE;
+        } else if (gender.compareTo("FEMALE") ==0 ){
+            this.gender = Gender.FEMALE;
+        } else {
+            this.gender = Gender.UNSPECIFIED;
+        }
+    }
+
+    public String getGenderToString(){
+        if (gender == Gender.MALE){
+            return "MALE";
+        } else if (gender == Gender.FEMALE){
+            return "FEMALE";
+        }
+        return "UNSPECIFIED";
+    }
+
     public Date getEmploymentDate() {
         return employmentDate;
     }
