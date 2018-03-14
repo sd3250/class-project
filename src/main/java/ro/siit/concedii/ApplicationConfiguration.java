@@ -6,6 +6,7 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import ro.siit.concedii.dao.EmployeeDAO;
 import ro.siit.concedii.dao.EmployeeDAOPGImpl;
 import ro.siit.concedii.dao.LeaveDAO;
+import ro.siit.concedii.dao.LeaveDAOPGImpl;
 import ro.siit.concedii.mocking.IMEmployeeDAO;
 import ro.siit.concedii.service.EmployeeServiceIMPL;
 
@@ -19,9 +20,9 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public LeaveDAO leaveDAO(){
-	    return null;
-    }
+    private LeaveDAO leaveDAO () {
+	    return new LeaveDAOPGImpl(dataSource());
+	}
 
     @Bean
     private DataSource dataSource() {

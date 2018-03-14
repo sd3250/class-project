@@ -53,6 +53,33 @@ public class Leave extends AbstractModel {
         return leaveType;
     }
 
+    public String getLeaveTypeToString() {
+        if (leaveType.compareTo(LeaveType.ANNUAL) == 0){
+            return "ANNUAL";
+        } else if (leaveType.compareTo(LeaveType.MEDICAL) == 0 ){
+            return "MEDICAL";
+        } else if (leaveType.compareTo(LeaveType.MARRIAGE) == 0 ){
+            return "MARRIAGE";
+        } else if (leaveType.compareTo(LeaveType.DEATH) == 0) {
+            return "DEATH";
+        }
+        return "BIRTH";
+    }
+
+    public void setLeaveType (String type){
+        if (type.compareTo("ANNUAL") == 0 ){
+            this.leaveType = LeaveType.ANNUAL;
+        } else if (type.compareTo("MEDICAL") == 0 ){
+            this.leaveType = LeaveType.MEDICAL;
+        } else if (type.compareTo("MARRIAGE") == 0 ){
+            this.leaveType = LeaveType.MARRIAGE;
+        } else if (type.compareTo("DEATH") == 0) {
+            this.leaveType = LeaveType.DEATH;
+        }
+
+        this.leaveType = LeaveType.BIRTH;
+    }
+
     public void setLeaveType(LeaveType leaveType) {
         this.leaveType = leaveType;
     }

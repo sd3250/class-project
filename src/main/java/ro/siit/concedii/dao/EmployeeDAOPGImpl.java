@@ -31,7 +31,7 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
             @Override
             public Employee mapRow(ResultSet resultSet, int i) throws SQLException {
                 Employee result = new Employee();
-                result.setId(resultSet.getInt(1));
+                result.setId(resultSet.getLong(1));
                 result.setFirstName(resultSet.getString(2));
                 result.setLastName(resultSet.getString(3));
                 result.setBirthDate(resultSet.getDate(4));
@@ -88,6 +88,10 @@ public class EmployeeDAOPGImpl implements EmployeeDAO {
 
     @Override
     public boolean delete(Employee model) {
+        int i = jdbcTemplate.update("DELETE FROM employee WHERE id=?", model.getId());
+        if (i != 0 ){
+            return true;
+        }
         return false;
     }
 }
