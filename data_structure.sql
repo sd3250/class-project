@@ -81,7 +81,7 @@ CREATE TABLE employee (
     id numeric DEFAULT nextval('employee_id_seq'::regclass) NOT NULL,
     first_name character varying(20),
     last_name character varying(20),
-    bith_date date,
+    birth_date date,
     gender character varying(10),
     employment_date date,
     job_title character varying(20),
