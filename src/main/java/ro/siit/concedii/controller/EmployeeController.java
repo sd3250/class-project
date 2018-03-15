@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ro.siit.concedii.domain.Employee;
 import ro.siit.concedii.domain.Gender;
 import ro.siit.concedii.service.EmployeeService;
+import ro.siit.concedii.service.ValidationException;
 
 import java.util.Collection;
 import java.util.Date;
@@ -50,7 +51,11 @@ public class EmployeeController {
     @RequestMapping(value = "/cages", method = RequestMethod.POST)
     public String createCage(Employee employee, Model model) {
         Collection<Employee> employees = employeeService.listAll();
-        employeeService.createEmployee(employee);
+        try {
+            employeeService.save(employee);
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
         model.addAttribute("employees", employees);
 
 

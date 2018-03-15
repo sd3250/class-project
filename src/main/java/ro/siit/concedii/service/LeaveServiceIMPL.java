@@ -4,9 +4,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ro.siit.concedii.dao.LeaveDAO;
+import ro.siit.concedii.domain.Employee;
 import ro.siit.concedii.domain.Leave;
 
+
+import java.time.DayOfWeek;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Service
@@ -121,6 +129,39 @@ public class LeaveServiceIMPL implements LeaveService {
     @Override
     public boolean rejectLeaveByID(Long id) {
         return !dao.findById(id).getApproved();
+    }
+
+    public LocalDate getLocalDateFromDate(Date date){
+        return LocalDate.from(Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()));
+    }
+
+    public int noYears(Employee employee){
+        LocalDate now = LocalDate.now();
+        LocalDate emplDate = getLocalDateFromDate(employee.getEmploymentDate());
+        return now.getYear() - emplDate.getYear();
+    }
+
+    public  LocalDate addworkingDays(Date date, int days){
+        LocalDate lday = getLocalDateFromDate(date);
+        if (days < 1 ){
+            return lday;
+        }
+        LocalDate result = lday;
+        int addedDays = 0;
+        while (addedDays < days) {
+            result = result.plusDays(1);
+            if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY ||
+                    result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+                ++addedDays;
+            }
+        }
+
+
+        return result;
+    }
+
+    public Date getDateFromLocalDate(LocalDate localDate) {
+        return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
 }
