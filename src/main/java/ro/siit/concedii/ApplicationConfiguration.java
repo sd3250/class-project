@@ -10,6 +10,8 @@ import ro.siit.concedii.dao.LeaveDAOPGImpl;
 import ro.siit.concedii.mocking.IMEmployeeDAO;
 import ro.siit.concedii.service.EmployeeService;
 import ro.siit.concedii.service.EmployeeServiceIMPL;
+import ro.siit.concedii.service.LeaveService;
+import ro.siit.concedii.service.LeaveServiceIMPL;
 
 import javax.sql.DataSource;
 
@@ -47,4 +49,9 @@ public class ApplicationConfiguration {
     private EmployeeService employeeService() {
 	    return new EmployeeServiceIMPL();
     }
+
+    private LeaveService leaveService() {
+	    return new LeaveServiceIMPL();
+	};
+
 }
