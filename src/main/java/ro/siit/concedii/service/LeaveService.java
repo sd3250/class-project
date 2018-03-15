@@ -27,8 +27,6 @@ public interface LeaveService {
 
     public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id);
 
-    public Integer getTotalNumberOfDaysLeftByEmployeeID(Long id);
-
     public Integer getTotalNumberOfDaysUsedByEmployeeID(Long id);
 
     public Integer getMaximumNoDaysForEmployeeID(long id);

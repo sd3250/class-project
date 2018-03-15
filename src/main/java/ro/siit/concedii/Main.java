@@ -4,6 +4,8 @@ package ro.siit.concedii;
 import java.time.*;
 import java.util.Date;
 
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+
 public class Main {
     public static LocalDate getLocalDateFromDate(Date date){
         return LocalDate.from(Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()));
@@ -28,6 +30,12 @@ public class Main {
         return result;
     }
 
+    public static Date getFirstDateOfYear(){
+        LocalDate now = LocalDate.now(); // 2015-11-23
+        LocalDate firstDay = now.with(firstDayOfYear());
+        return localDateasDate(firstDay);
+    }
+
     public static Date localDateasDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
@@ -41,6 +49,7 @@ public class Main {
         LocalDate test = addworkingDays(new Date(117,3,15),10);
         System.out.println(test.getDayOfMonth());
         System.out.println(localDateasDate(now));
+        System.out.println(getFirstDateOfYear());
     }
 
 }

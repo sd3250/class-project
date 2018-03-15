@@ -13,17 +13,13 @@ import java.util.Objects;
 public class Leave extends AbstractModel {
     private Date startDate;
     private int noDays;
-    private LeaveType leaveType;
-//lateruse
+    private LeaveType leaveType; //later use
     private Boolean approved;
     private long employeeID;
 
 
 
-    public Date endLeaveDate(){
-        //calculeaza end date pe baza de zile si wk
-        return null;
-    };
+
 
     public long getEmployeeID() {
         return employeeID;

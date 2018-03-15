@@ -8,6 +8,7 @@ import ro.siit.concedii.dao.EmployeeDAOPGImpl;
 import ro.siit.concedii.dao.LeaveDAO;
 import ro.siit.concedii.dao.LeaveDAOPGImpl;
 import ro.siit.concedii.mocking.IMEmployeeDAO;
+import ro.siit.concedii.service.EmployeeService;
 import ro.siit.concedii.service.EmployeeServiceIMPL;
 
 import javax.sql.DataSource;
@@ -40,5 +41,10 @@ public class ApplicationConfiguration {
                 .append("&password=")
                 .append("asdf123").toString();
         return new SingleConnectionDataSource(url, false);
+    }
+
+    @Bean
+    private EmployeeService employeeService() {
+	    return new EmployeeServiceIMPL();
     }
 }

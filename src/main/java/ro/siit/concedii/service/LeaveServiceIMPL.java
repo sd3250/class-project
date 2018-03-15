@@ -17,11 +17,15 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
+
 @Service
 public class LeaveServiceIMPL implements LeaveService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LeaveServiceIMPL.class);
 
     private LeaveDAO dao;
+
+    private EmployeeService employeeService;
 
     public LeaveDAO getDao() {
         return dao;
@@ -101,23 +105,46 @@ public class LeaveServiceIMPL implements LeaveService {
     }
 
     @Override
-    public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id) {
-        return null;
-    }
+    public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id){
+        Collection<Leave> leaves;
+        leaves = listAllByEmployeeIDApproved(id);
+        //nu iau in calcul o cerere care a fost inregistrata anul trecut, presupunem ca un concediu care e de pe un an pe altu e in doua cereri
+        leaves =  leaves.stream().filter(c -> (c.getStartDate().after(getFirstDateOfYear()) || (c.getStartDate().equals(getFirstDateOfYear())))).collect(Collectors.toList());
+        int count = 0;
+        for (Leave leave: leaves
+                ) {
+            count = count + leave.getNoDays();
 
-    @Override
-    public Integer getTotalNumberOfDaysLeftByEmployeeID(Long id) {
-        return null;
+        }
+
+        return getMaximumNoDaysForEmployeeID(id) - count;
+
+
     }
 
     @Override
     public Integer getTotalNumberOfDaysUsedByEmployeeID(Long id) {
-        return null;
+        return getMaximumNoDaysForEmployeeID(id) - getTotalNumberOfDaysAvailableByEmployeeID(id);
     }
 
+    /* baza de calcul 21 zile pe an, 2 pentru fiecare an in companie maxim 5 ani
+
+     */
     @Override
     public Integer getMaximumNoDaysForEmployeeID(long id) {
-        return null;
+        Employee employee = employeeService.get(id);
+        int count = 21;
+        int years = noYears(employee);
+        int i = 0;
+        while (i <= 5){
+            if (years - 2 > 0 ){
+                count = count +2;
+                years = years -2;
+            }
+        }
+
+
+        return count;
     }
 
     @Override
@@ -162,6 +189,12 @@ public class LeaveServiceIMPL implements LeaveService {
 
     public Date getDateFromLocalDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public  Date getFirstDateOfYear(){
+        LocalDate now = LocalDate.now(); // 2015-11-23
+        LocalDate firstDay = now.with(firstDayOfYear());
+        return getDateFromLocalDate(firstDay);
     }
 
 }
