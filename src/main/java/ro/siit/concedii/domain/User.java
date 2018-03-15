@@ -9,6 +9,16 @@ public class User extends AbstractModel{
 
     private long employeeId;
 
+    private boolean isAdmin;
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     public String getUserName() {
         return userName;
     }
