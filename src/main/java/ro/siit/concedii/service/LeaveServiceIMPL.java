@@ -3,6 +3,7 @@ package ro.siit.concedii.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import ro.siit.concedii.dao.EmployeeDAO;
 import ro.siit.concedii.dao.LeaveDAO;
 import ro.siit.concedii.domain.Employee;
 import ro.siit.concedii.domain.Leave;
@@ -12,7 +13,6 @@ import java.time.DayOfWeek;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -25,7 +25,7 @@ public class LeaveServiceIMPL implements LeaveService {
 
     private LeaveDAO dao;
 
-    private EmployeeService employeeService;
+    private EmployeeDAO employeeDAO;
 
     public LeaveDAO getDao() {
         return dao;
@@ -132,7 +132,7 @@ public class LeaveServiceIMPL implements LeaveService {
      */
     @Override
     public Integer getMaximumNoDaysForEmployeeID(long id) {
-        Employee employee = employeeService.get(id);
+        Employee employee = employeeDAO.findById(id);
         int count = 21;
         int years = noYears(employee);
         int i = 0;
