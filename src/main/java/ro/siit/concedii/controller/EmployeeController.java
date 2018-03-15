@@ -40,27 +40,8 @@ public class EmployeeController {
         model.addAttribute("salary",salary);
         return "employeee";
     }
-    @RequestMapping(value = "/cages", method = RequestMethod.GET)
-    public String listCages(Model model) {
-        Collection<Employee> employees = employeeService.listAll();
-        model.addAttribute("employees", employees);
-        return "listCages";
-
-    }
-
-    @RequestMapping(value = "/cages", method = RequestMethod.POST)
-    public String createCage(Employee employee, Model model) {
-        Collection<Employee> employees = employeeService.listAll();
-        try {
-            employeeService.save(employee);
-        } catch (ValidationException e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("employees", employees);
 
 
-        return "listCages";
-    }
 
     @RequestMapping(value = "/prepare/Employee", method = RequestMethod.GET)
     public String prepareEmployee(Model model) {
