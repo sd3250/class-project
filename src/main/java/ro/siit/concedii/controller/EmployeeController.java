@@ -1,5 +1,5 @@
 /**
- * TREBUIE PUSE DEPENDENTE IN POM.XML
+ * ce?
  */
 package ro.siit.concedii.controller;
 
@@ -41,7 +41,9 @@ public class EmployeeController {
         return "employeee";
     }
 
-
+/*
+for what?
+ */
 
     @RequestMapping(value = "/prepare/Employee", method = RequestMethod.GET)
     public String prepareEmployee(Model model) {
