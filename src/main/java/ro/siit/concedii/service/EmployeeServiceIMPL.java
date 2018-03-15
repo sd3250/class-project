@@ -29,6 +29,15 @@ public class EmployeeServiceIMPL implements EmployeeService{
 		return dao.getAll();
 	}
 
+	/*
+	daca trebuie sa identificam un angajat pe baza de aLtceva decat id va trebui sa folosim o alta
+	metoda, poate CNP de adaugat la employee sa fie search unic, sau un mod de a filtra
+	in mai multe rezultate de angajati cu acelasi nume
+
+		(NU FACEM IN SPRINTUL ASTA!!!!!!!!!!!!!! presupunem ca nu avem angajati cu acelasi nume)
+
+
+	   */
 	@Override
 	@Deprecated
 	public Collection<Employee> search( String query) {
