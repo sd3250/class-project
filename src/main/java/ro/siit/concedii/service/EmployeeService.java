@@ -7,6 +7,7 @@ import java.util.Collection;
 public interface EmployeeService {
     public Collection<Employee> listAll();
 
+    @Deprecated
     public Collection<Employee> search( String query) ;
 
     public boolean delete(Long id) ;

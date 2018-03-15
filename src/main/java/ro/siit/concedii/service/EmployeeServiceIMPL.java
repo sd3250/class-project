@@ -30,6 +30,7 @@ public class EmployeeServiceIMPL implements EmployeeService{
 	}
 
 	@Override
+	@Deprecated
 	public Collection<Employee> search( String query) {
 		LOGGER.debug("Searching for " + query);
 		return dao.searchByName(query);
