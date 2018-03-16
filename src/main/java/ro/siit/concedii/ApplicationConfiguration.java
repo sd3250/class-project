@@ -3,6 +3,7 @@ package ro.siit.concedii;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.web.client.RestTemplate;
 import ro.siit.concedii.dao.EmployeeDAO;
 import ro.siit.concedii.dao.EmployeeDAOPGImpl;
 import ro.siit.concedii.dao.LeaveDAO;
@@ -53,5 +54,10 @@ public class ApplicationConfiguration {
     private LeaveService leaveService() {
 	    return new LeaveServiceIMPL();
 	};
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }

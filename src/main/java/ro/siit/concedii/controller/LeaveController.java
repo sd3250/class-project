@@ -21,6 +21,6 @@ public class LeaveController {
         Collection<Leave> leaves = leaveService.listAll();
         moldel.addAttribute("leaves", leaves);
         moldel.addAttribute("createLeave", new Leave());
-        return "listLeaves";
+        return "leave/listLeaves";
     }
 }
