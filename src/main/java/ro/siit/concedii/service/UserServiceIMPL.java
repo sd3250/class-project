@@ -12,7 +12,6 @@ public class UserServiceIMPL implements UserService {
     @Override
     public User get(Long id) {
         return new User();
-
     }
 
     @Override
