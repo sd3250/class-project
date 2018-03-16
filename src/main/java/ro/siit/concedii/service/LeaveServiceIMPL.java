@@ -35,6 +35,8 @@ public class LeaveServiceIMPL implements LeaveService {
         this.dao = dao;
     }
 
+
+
     @Override
     public Collection<Leave> search(String query) {
         return null;
