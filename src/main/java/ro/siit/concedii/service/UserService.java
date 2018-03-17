@@ -6,9 +6,6 @@ import java.util.Collection;
 
 public interface UserService {
 
-    // TODO @Dan: Why do we need these 2 for a user?
-//    public Collection<Employee> listAll();
-//    public Collection<Employee> search( String query) ;
 
     public boolean delete(Long id) ;
 

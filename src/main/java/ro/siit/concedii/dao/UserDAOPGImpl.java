@@ -40,11 +40,14 @@ public class UserDAOPGImpl implements UserDAO {
 
     @Override
     public User findById(Long id) {
-        return jdbcTemplate.queryForObject("select * from user where id = ?", new RowMapper<User>() {
+        return jdbcTemplate.queryForObject("select * from user where employee_id = ?", new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 User result = new User();
-                result.setId(resultSet.getInt(1));
+                result.setUserName(resultSet.getString(1));
+                result.setPassword(resultSet.getString(2));
+                result.setAdmin(resultSet.getString(3).equals("ADMIN"));
+                result.setEmployeeId(resultSet.getInt(4));
                 return result;
             }
         }, id);
@@ -59,6 +62,20 @@ public class UserDAOPGImpl implements UserDAO {
     public boolean update(User model, Long id) {
         return false;
 
+    }
+
+    public User findByUsername(String username) {
+        return jdbcTemplate.queryForObject("select * from user where username = ?", new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet resultSet, int i) throws SQLException {
+                User result = new User();
+                result.setUserName(resultSet.getString(1));
+                result.setPassword(resultSet.getString(2));
+                result.setAdmin(resultSet.getString(3).equals("ADMIN"));
+                result.setEmployeeId(resultSet.getInt(4));
+                return result;
+            }
+        }, username);
     }
 
     @Override
