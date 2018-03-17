@@ -1,14 +1,14 @@
 package ro.siit.concedii.service;
 
-import ro.siit.concedii.domain.Employee;
 import ro.siit.concedii.domain.User;
 
 import java.util.Collection;
 
 public interface UserService {
-    public Collection<Employee> listAll();
 
-    public Collection<Employee> search( String query) ;
+    // TODO @Dan: Why do we need these 2 for a user?
+//    public Collection<Employee> listAll();
+//    public Collection<Employee> search( String query) ;
 
     public boolean delete(Long id) ;
 

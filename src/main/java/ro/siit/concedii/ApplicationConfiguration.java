@@ -6,11 +6,15 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.web.client.RestTemplate;
 import ro.siit.concedii.dao.EmployeeDAO;
 import ro.siit.concedii.dao.EmployeeDAOPGImpl;
+import ro.siit.concedii.dao.UserDAO;
+import ro.siit.concedii.dao.UserDAOPGImpl;
 import ro.siit.concedii.dao.LeaveDAO;
 import ro.siit.concedii.dao.LeaveDAOPGImpl;
 import ro.siit.concedii.mocking.IMEmployeeDAO;
 import ro.siit.concedii.service.EmployeeService;
 import ro.siit.concedii.service.EmployeeServiceIMPL;
+import ro.siit.concedii.service.UserService;
+import ro.siit.concedii.service.UserServiceIMPL;
 import ro.siit.concedii.service.LeaveService;
 import ro.siit.concedii.service.LeaveServiceIMPL;
 
@@ -21,6 +25,11 @@ public class ApplicationConfiguration {
 	@Bean
 	public EmployeeDAO employeeDAO (){
 	    return new EmployeeDAOPGImpl(dataSource());
+    }
+
+    @Bean
+    public UserDAO userDAO (){
+        return new UserDAOPGImpl(dataSource());
     }
 
     @Bean
@@ -51,9 +60,11 @@ public class ApplicationConfiguration {
 	    return new EmployeeServiceIMPL();
     }
 
+    private UserService UserService() { return new UserServiceIMPL(); }
+
     private LeaveService leaveService() {
 	    return new LeaveServiceIMPL();
-	};
+	}
 
     @Bean
     public RestTemplate restTemplate() {

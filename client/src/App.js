@@ -19,6 +19,13 @@ class App extends Component {
 
   getEmployeesData = () => {
     //fetch from API
+    //test that XHR requests are proxied to back-end server
+    fetch('/api/employeesData', {
+        accept: 'application/json',
+      }).then(function(data) {
+            console.log(data)
+        })
+
     return AngajatiData
   }
 
