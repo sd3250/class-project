@@ -153,6 +153,16 @@ ALTER TABLE ONLY leave
 
 -- Completed on 2018-03-14 16:26:48
 
+CREATE TABLE public."user"
+(
+    username character varying(30) NOT NULL,
+    password character varying(30),
+    role character varying(15),
+    employee_id numeric,
+    PRIMARY KEY (username),
+    CONSTRAINT employee_id FOREIGN KEY (employee_id)
+        REFERENCES public.employee (id) MATCH SIMPLE
+)
 --
 -- PostgreSQL database dump complete
 --
