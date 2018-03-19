@@ -168,7 +168,7 @@ CREATE TABLE user (
     id numeric DEFAULT nextval('user_id_seq'::regclass) NOT NULL,
     username character varying(30) NOT NULL,
     password character varying(30),
-    role character varying(15),
+    isAdmin boolean,
     employee_id numeric,
     PRIMARY KEY (username),
     CONSTRAINT employee_id FOREIGN KEY (employee_id)
@@ -177,4 +177,6 @@ CREATE TABLE user (
 --
 -- PostgreSQL database dump complete
 --
+
+
 

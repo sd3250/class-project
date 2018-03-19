@@ -46,7 +46,7 @@ public class UserDAOPGImpl implements UserDAO {
                 result.setId(resultSet.getInt(1));
                 result.setUserName(resultSet.getString(2));
                 result.setPassword(resultSet.getString(3));
-                result.setAdmin(resultSet.getString(4).equals("ADMIN"));
+                result.setAdmin(resultSet.getBoolean(4));
                 result.setEmployeeId(resultSet.getInt(5));
                 return result;
             }
@@ -61,7 +61,7 @@ public class UserDAOPGImpl implements UserDAO {
                 result.setId(resultSet.getInt(1));
                 result.setUserName(resultSet.getString(2));
                 result.setPassword(resultSet.getString(3));
-                result.setAdmin(resultSet.getString(4).equals("ADMIN"));
+                result.setAdmin(resultSet.getBoolean(4));
                 result.setEmployeeId(resultSet.getInt(5));
                 return result;
             }
@@ -77,7 +77,7 @@ public class UserDAOPGImpl implements UserDAO {
                 result.setId(resultSet.getInt(1));
                 result.setUserName(resultSet.getString(2));
                 result.setPassword(resultSet.getString(3));
-                result.setAdmin(resultSet.getString(4).equals("ADMIN"));
+                result.setAdmin(resultSet.getBoolean(4));
                 result.setEmployeeId(resultSet.getInt(5));
                 return result;
             }
