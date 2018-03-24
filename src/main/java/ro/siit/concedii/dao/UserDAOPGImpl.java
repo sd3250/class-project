@@ -84,20 +84,32 @@ public class UserDAOPGImpl implements UserDAO {
         }, username);
     }
 
-    //TODO Sebi: need to move the duplicate logic for mapping user row to another function
+    //TODO Sebi: I should move the duplicate logic for mapping user row to another function, because this is scratching my eyes
 
     @Override
     public User add(User model) {
-        return new User();
+        long id = jdbcTemplate.queryForObject("insert into user(username, password, isAdmin, employee_id) values(?, ?, ?, ?) returning id ",
+                new RowMapper<Long>() {
+                    @Override
+                    public Long mapRow(ResultSet resultSet, int i) throws SQLException {
+                        return resultSet.getLong(1);
+                    }
+                }, model.getUserName(), model.getPassword(), model.isAdmin(),model.getEmployeeId());
+        model.setId(id);
+        return model;
     }
 
     @Override
     public boolean update(User model, Long id) {
-        return false;
+        String query = "update user set (username, password, isAdmin, employee_id) = (?, ?, ?, ?)  where id = ?";
+        int result = jdbcTemplate.update(query, model.getUserName(), model.getPassword(), model.isAdmin(), model.getEmployeeId());
+        return (result != 0);
     }
 
     @Override
     public boolean delete(User model) {
-        return false;
+        int result = jdbcTemplate.update("delete from user where id=?", model.getId());
+        return (result != 0);
     }
 }
+
