@@ -2,8 +2,9 @@ package ro.siit.concedii.service;
 
 import ro.siit.concedii.dao.UserDAO;
 import ro.siit.concedii.domain.User;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class UserServiceIMPL implements UserService {
 
     private UserDAO dao;
@@ -32,6 +33,6 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public boolean isAuthentificated(String username, String password) {
-        return false;
+        return true;
     }
 }
