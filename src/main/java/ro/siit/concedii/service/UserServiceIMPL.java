@@ -11,7 +11,7 @@ public class UserServiceIMPL implements UserService {
 
     @Override
     public User get(Long id) {
-        return new User();
+        return dao.findById(id);
     }
 
     @Override
@@ -20,13 +20,14 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public boolean update(User employee, Long id) {
-        return false;
+    public boolean update(User user, Long id) {
+        return dao.update(user, id);
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        User user = dao.findById(id);
+        return (user != null && dao.delete(user));
     }
 
     @Override

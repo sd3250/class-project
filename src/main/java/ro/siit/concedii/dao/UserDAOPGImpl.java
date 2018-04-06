@@ -27,7 +27,6 @@ public class UserDAOPGImpl implements UserDAO {
 
     @Override
     public Collection<User> getAll() {
-        //TODO sebi: need to debug, is this returning a list of users, or just one?
         return jdbcTemplate.query("select * from user", new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -40,46 +39,77 @@ public class UserDAOPGImpl implements UserDAO {
 
     @Override
     public User findById(Long id) {
-        return jdbcTemplate.queryForObject("select * from user where employee_id = ?", new RowMapper<User>() {
+        return jdbcTemplate.queryForObject("select * from user where id = ?", new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 User result = new User();
-                result.setUserName(resultSet.getString(1));
-                result.setPassword(resultSet.getString(2));
-                result.setAdmin(resultSet.getString(3).equals("ADMIN"));
-                result.setEmployeeId(resultSet.getInt(4));
+                result.setId(resultSet.getInt(1));
+                result.setUserName(resultSet.getString(2));
+                result.setPassword(resultSet.getString(3));
+                result.setAdmin(resultSet.getBoolean(4));
+                result.setEmployeeId(resultSet.getInt(5));
                 return result;
             }
         }, id);
     }
 
-    @Override
-    public User add(User model) {
-        return new User();
+    public User findByEmployeeId(Long id) {
+        return jdbcTemplate.queryForObject("select * from user where employee_id = ?", new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet resultSet, int i) throws SQLException {
+                User result = new User();
+                result.setId(resultSet.getInt(1));
+                result.setUserName(resultSet.getString(2));
+                result.setPassword(resultSet.getString(3));
+                result.setAdmin(resultSet.getBoolean(4));
+                result.setEmployeeId(resultSet.getInt(5));
+                return result;
+            }
+        }, id);
     }
 
-    @Override
-    public boolean update(User model, Long id) {
-        return false;
-
-    }
 
     public User findByUsername(String username) {
         return jdbcTemplate.queryForObject("select * from user where username = ?", new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 User result = new User();
-                result.setUserName(resultSet.getString(1));
-                result.setPassword(resultSet.getString(2));
-                result.setAdmin(resultSet.getString(3).equals("ADMIN"));
-                result.setEmployeeId(resultSet.getInt(4));
+                result.setId(resultSet.getInt(1));
+                result.setUserName(resultSet.getString(2));
+                result.setPassword(resultSet.getString(3));
+                result.setAdmin(resultSet.getBoolean(4));
+                result.setEmployeeId(resultSet.getInt(5));
                 return result;
             }
         }, username);
     }
 
+    //TODO Sebi: I should move the duplicate logic for mapping user row to another function, because this is scratching my eyes
+
+    @Override
+    public User add(User model) {
+        long id = jdbcTemplate.queryForObject("insert into user(username, password, isAdmin, employee_id) values(?, ?, ?, ?) returning id ",
+                new RowMapper<Long>() {
+                    @Override
+                    public Long mapRow(ResultSet resultSet, int i) throws SQLException {
+                        return resultSet.getLong(1);
+                    }
+                }, model.getUserName(), model.getPassword(), model.isAdmin(),model.getEmployeeId());
+        model.setId(id);
+        return model;
+    }
+
+    @Override
+    public boolean update(User model, Long id) {
+        String query = "update user set (username, password, isAdmin, employee_id) = (?, ?, ?, ?)  where id = ?";
+        int result = jdbcTemplate.update(query, model.getUserName(), model.getPassword(), model.isAdmin(), model.getEmployeeId());
+        return (result != 0);
+    }
+
     @Override
     public boolean delete(User model) {
-        return false;
+        int result = jdbcTemplate.update("delete from user where id=?", model.getId());
+        return (result != 0);
     }
 }
+
