@@ -27,4 +27,14 @@ public class EmployeeRestController {
     ResponseEntity<?> add(@PathVariable Employee input) throws ValidationException {
         return employeeService.save(input);
     }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id){
+        employeeService.delete(id);
+    }
+
+    @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
+    boolean update(@PathVariable Employee input, Long id) throws ValidationException {
+        return employeeService.update(input, id);
+    }
 }
