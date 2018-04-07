@@ -1,4 +1,4 @@
-package ro.siit.concedii.restcontroller;
+package ro.siit.concedii.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("users")
-public class UserControllerREST {
+public class UserRestController {
 
     User user = new User();
 
