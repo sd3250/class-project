@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import ro.siit.concedii.dao.EmployeeDAO;
@@ -65,12 +66,13 @@ public class EmployeeServiceIMPL implements EmployeeService{
 	}
 
     @Override
-	public void save(Employee employee) throws ValidationException {
+	public ResponseEntity<?> save(Employee employee) throws ValidationException {
 		LOGGER.debug("Saving: " + employee);
 		validate(employee);
 
 		dao.add(employee);
-	}
+        return null;
+    }
 
 	@Override
 	public boolean update(Employee employee, Long id) throws ValidationException {

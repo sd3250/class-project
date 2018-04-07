@@ -1,5 +1,6 @@
 package ro.siit.concedii.service;
 
+import org.springframework.http.ResponseEntity;
 import ro.siit.concedii.domain.Employee;
 
 import java.util.Collection;
@@ -14,7 +15,7 @@ public interface EmployeeService {
 
     public Employee get(Long id) ;
 
-    public void save(Employee employee)throws ValidationException;
+    public ResponseEntity<?> save(Employee employee)throws ValidationException;
 
     public boolean update(Employee employee, Long id) throws ValidationException;
 }

@@ -33,12 +33,12 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    private LeaveDAO leaveDAO () {
+    public LeaveDAO leaveDAO () {
 	    return new LeaveDAOPGImpl(dataSource());
 	}
 
     @Bean
-    private DataSource dataSource() {
+    public DataSource dataSource() {
         String url = new StringBuilder()
                 .append("jdbc:")
                 .append("postgresql")
@@ -56,13 +56,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    private EmployeeService employeeService() {
+    public EmployeeService employeeService() {
 	    return new EmployeeServiceIMPL();
     }
 
-    private UserService UserService() { return new UserServiceIMPL(); }
+    public UserService UserService() { return new UserServiceIMPL(); }
 
-    private LeaveService leaveService() {
+    public LeaveService leaveService() {
 	    return new LeaveServiceIMPL();
 	}
 
