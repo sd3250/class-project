@@ -47,9 +47,11 @@ public class ApplicationConfiguration {
                 .append(":")
                 .append("5432")
                 .append("/")
-                .append("postgres")
+                .append("concedii")
                 .append("?user=")
-                .append("sebastian.sirb").toString();
+                .append("postgres")
+                .append("&password=")
+                .append("asdf123").toString();
         return new SingleConnectionDataSource(url, false);
     }
 
