@@ -30,7 +30,7 @@ public class LeaveServiceIMPL implements LeaveService {
     @Autowired
     private EmployeeDAO employeeDAO;
 
-    @Autowired
+
     public LeaveDAO getDao() {
         return dao;
     }
