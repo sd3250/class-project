@@ -48,11 +48,9 @@ public class Main {
 
 
         LocalDate test = addworkingDays(new Date(117,3,15),10);
-//        System.out.println(test.getDayOfMonth());
-//        System.out.println(localDateasDate(now));
-//        System.out.println(getFirstDateOfYear());
-        UserServiceIMPL userServiceIMPL = new UserServiceIMPL();
-        System.out.println(userServiceIMPL.isAuthentificated("Ion", "sd"));
+        System.out.println(test.getDayOfMonth());
+        System.out.println(localDateasDate(now));
+        System.out.println(getFirstDateOfYear());
     }
 
 }
