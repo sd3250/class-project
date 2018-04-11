@@ -2,6 +2,7 @@ package ro.siit.concedii.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.siit.concedii.dao.EmployeeDAO;
 import ro.siit.concedii.dao.LeaveDAO;
@@ -23,10 +24,13 @@ import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 public class LeaveServiceIMPL implements LeaveService {
     private static final Logger LOGGER = LoggerFactory.getLogger(LeaveServiceIMPL.class);
 
+    @Autowired
     private LeaveDAO dao;
 
+    @Autowired
     private EmployeeDAO employeeDAO;
 
+    @Autowired
     public LeaveDAO getDao() {
         return dao;
     }

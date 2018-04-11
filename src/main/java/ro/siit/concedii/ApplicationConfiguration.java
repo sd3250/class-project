@@ -61,7 +61,7 @@ public class ApplicationConfiguration {
     }
     @Bean
     public UserService UserService() { return new UserServiceIMPL(); }
-    
+
     @Bean
     public LeaveService leaveService() {
 	    return new LeaveServiceIMPL();

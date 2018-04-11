@@ -1,5 +1,6 @@
 package ro.siit.concedii.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ro.siit.concedii.dao.UserDAO;
 import ro.siit.concedii.domain.User;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceIMPL implements UserService {
 
+    @Autowired
     private UserDAO dao;
 
 
