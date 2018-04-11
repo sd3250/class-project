@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ro.siit.concedii.dao.UserDAO;
 import ro.siit.concedii.domain.User;
 import org.springframework.stereotype.Service;
+import java.util.Collection;
 
 @Service
 public class UserServiceIMPL implements UserService {
@@ -11,6 +12,9 @@ public class UserServiceIMPL implements UserService {
     @Autowired
     private UserDAO dao;
 
+    public Collection<User> listAll() {
+        return dao.getAll();
+    }
 
     @Override
     public User get(Long id) {

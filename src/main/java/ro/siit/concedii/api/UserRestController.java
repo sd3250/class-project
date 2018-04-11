@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ro.siit.concedii.domain.User;
 import ro.siit.concedii.service.UserServiceIMPL;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping(value = "/api/users", method = RequestMethod.GET)
 public class UserRestController {
 
     User user = new User();
@@ -22,8 +22,15 @@ public class UserRestController {
     @Autowired
     private UserServiceIMPL userService;
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody User getUserById(@PathVariable long id) {
+    @RequestMapping("")
+    public Collection<User> list() {
+        return userService.listAll();
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public User getUserById(@PathVariable ("id") Long id) {
         return userService.get(id);
     }
+
 }

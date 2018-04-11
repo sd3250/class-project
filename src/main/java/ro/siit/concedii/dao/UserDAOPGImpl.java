@@ -27,11 +27,16 @@ public class UserDAOPGImpl implements UserDAO {
 
     @Override
     public Collection<User> getAll() {
+        //TODO: If you had to add "public.user" in the initial sql query when setting up,
+        //TODO: you need to change it below as well
         return jdbcTemplate.query("select * from user", new RowMapper<User>() {
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
                 User result = new User();
                 result.setId(resultSet.getLong(1));
+                result.setUserName(resultSet.getString(2));
+                result.setPassword(resultSet.getString(3));
+                result.setAdmin(resultSet.getBoolean(4));
                 return result;
             }
         });
