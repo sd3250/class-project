@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import ro.siit.concedii.domain.User;
 import ro.siit.concedii.service.UserServiceIMPL;
@@ -14,7 +15,7 @@ import ro.siit.concedii.service.UserServiceIMPL;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(value = "/api/users", method = RequestMethod.GET)
+@RequestMapping(value = "/api/users")
 public class UserRestController {
 
     User user = new User();
@@ -22,7 +23,7 @@ public class UserRestController {
     @Autowired
     private UserServiceIMPL userService;
 
-    @RequestMapping("")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public Collection<User> list() {
         return userService.listAll();
     }
@@ -31,6 +32,12 @@ public class UserRestController {
     @ResponseBody
     public User getUserById(@PathVariable ("id") Long id) {
         return userService.get(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseBody
+    public void saveUser(@RequestBody User user) {
+        userService.save(user);
     }
 
 }
