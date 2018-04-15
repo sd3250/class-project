@@ -57,13 +57,10 @@ public class Employee extends AbstractModel {
     }
 
     public void setGender(String gender){
-        if (gender.compareTo("MALE") == 0) {
-            this.gender = Gender.MALE;
-        } else if (gender.compareTo("FEMALE") ==0 ){
-            this.gender = Gender.FEMALE;
-        } else {
-            this.gender = Gender.UNSPECIFIED;
-        }
+
+        //this need to nbe fixed :)
+        this.gender = Gender.MALE;
+
     }
 
     public String getGenderToString(){
