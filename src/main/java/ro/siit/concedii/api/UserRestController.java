@@ -34,10 +34,22 @@ public class UserRestController {
         return userService.get(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
-    public void saveUser(@RequestBody User user) {
+    public boolean saveUser(@RequestBody User user) {
         userService.save(user);
+        return true;
+    }
+
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    public void updateUser(@PathVariable ("id") Long id, @RequestBody User user) {
+        userService.update(user, id);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    @ResponseBody
+    public void deleteUser(@RequestBody User user, @PathVariable ("id") Long id) {
+        userService.delete(id);
     }
 
 }
