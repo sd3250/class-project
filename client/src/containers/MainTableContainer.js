@@ -13,7 +13,7 @@ class MainTableContainer extends Component {
     render() {
 
         const tableData = this.props.employeesData;
-        const tableContent = tableData.map((angajat) => {
+        const tableContent = tableData && tableData.length ? tableData.map((angajat) => {
             return <TableRow>
                 <TableRowColumn>{angajat.id}</TableRowColumn>
                 <TableRowColumn>{angajat.firstName}</TableRowColumn>
@@ -24,7 +24,7 @@ class MainTableContainer extends Component {
                 <TableRowColumn>{angajat.jobTitle}</TableRowColumn>
                 <TableRowColumn>{angajat.salary}</TableRowColumn>
             </TableRow>
-        });
+        }) : [];
 
         return (
             <Table>
