@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
-import Register from './components/Register';
-// import MainTableContainer from './containers/MainTableContainer';
-// import AngajatiData from './mock_data/angajati.json';
+import Register from './containers/Register';
+import MainTableContainer from './containers/MainTableContainer';
 import './css/App.css';
 
 class App extends Component {
@@ -13,7 +13,8 @@ class App extends Component {
       super(props);
       this.state={
           registeredSuccessfully: false,
-          failedRegistration: false
+          failedRegistration: false,
+          employeesData: []
       }
   }
 
@@ -52,27 +53,30 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+      this.getEmployeesData()
+  }
+
   getUserRole = () => {
     //return "REGULAR"
     //return "ADMIN"
   }
 
   getEmployeesData = () => {
-    //fetch from API
-    //test that XHR requests are proxied to back-end server
-    // fetch('/api/employeesData', {
-    //     accept: 'application/json',
-    //   }).then(function(data) {
-    //         console.log(data)
-    //     })
 
-      fetch('/api/users', {
-          accept: 'application/json',
-      }).then(function(data) {
-          console.log('users: ', data)
+      fetch('api/employee', {
+          method: 'get',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          }
+      }).then(res=>res.json())
+          .then( res => {
+              console.log(res)
+              this.setState({employeesData: res})
+          }).catch(function(err) {
+          console.log(err)
       })
-
-    // return AngajatiData
   }
 
   render() {
@@ -86,25 +90,35 @@ class App extends Component {
           <p className="App-intro">
             Built with Java, Spring, React, and Material-UI.
           </p>
-            {!this.isUserAuthenticated() ? <RaisedButton label="Log In" /> : null}
+            {/*{!this.isUserAuthenticated() ? <RaisedButton label="Log In" /> : null}*/}
+            {
+                this.state.registeredSuccessfully ?
+                    <MainTableContainer
+                        employeesData={this.state.employeesData}
+                    /> :
+                    <div>
+                        <Register
+                            addUser = {this.addUser}
+                        />
+                        <Snackbar
+                            bodyStyle={{backgroundColor: 'green'}}
+                            autoHideDuration={5000}
+                            message={'Succesfully Registered!'}
+                            open={this.state.registeredSuccessfully}
+                        />
+                        <Snackbar
+                            bodyStyle={{backgroundColor: 'red'}}
+                            autoHideDuration={5000}
+                            message={'An error occured when trying to register!'}
+                            open={this.state.failedRegistration}
+                        />
+                    </div>
+
+            }
           {/*<MainTableContainer*/}
               {/*employeesData={this.getEmployeesData()}*/}
           {/*/>*/}
-            <Register
-                addUser = {this.addUser}
-            />
-            <Snackbar
-                bodyStyle={{backgroundColor: 'green'}}
-                autoHideDuration={5000}
-                message={'Succesfully Registered!'}
-                open={this.state.registeredSuccessfully}
-              />
-            <Snackbar
-                bodyStyle={{backgroundColor: 'red'}}
-                autoHideDuration={5000}
-                message={'An error occured when trying to register!'}
-                open={this.state.failedRegistration}
-            />
+
 
         </div>
     </MuiThemeProvider>

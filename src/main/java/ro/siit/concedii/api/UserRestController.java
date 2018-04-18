@@ -15,10 +15,8 @@ import ro.siit.concedii.service.UserServiceIMPL;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(value = "/api/users")
+@RequestMapping(value = "/api/users/")
 public class UserRestController {
-
-    User user = new User();
 
     @Autowired
     private UserServiceIMPL userService;
