@@ -38,4 +38,10 @@ public class EmployeeRestController {
     boolean update(@PathVariable Employee input, Long id) throws ValidationException {
         return employeeService.update(input, id);
     }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public Employee getEmployeeById(@PathVariable ("id") Long id) {
+        return employeeService.get(id);
+    }
 }
