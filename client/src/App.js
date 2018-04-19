@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import Register from './containers/Register';
 import MainTableContainer from './containers/MainTableContainer';
@@ -94,6 +92,7 @@ class App extends Component {
             {
                 this.state.registeredSuccessfully ?
                     <MainTableContainer
+                        getEmployees={this.getEmployeesData}
                         employeesData={this.state.employeesData}
                     /> :
                     <div>
