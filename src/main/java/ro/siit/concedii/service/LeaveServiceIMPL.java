@@ -40,7 +40,6 @@ public class LeaveServiceIMPL implements LeaveService {
     }
 
 
-
     @Override
     public Collection<Leave> search(String query) {
         return null;
@@ -73,7 +72,7 @@ public class LeaveServiceIMPL implements LeaveService {
 
     @Override
     public boolean update(Leave leave, Long id) {
-        if (dao.update(leave,id)) {
+        if (dao.update(leave, id)) {
             LOGGER.debug("Updateing: " + leave);
             return true;
         } else {
@@ -98,7 +97,9 @@ public class LeaveServiceIMPL implements LeaveService {
     public Collection<Leave> listAllByEmployeeIDApproved(Long id) {
         Collection<Leave> leaves;
         leaves = dao.searchByEmployeeID(id);
-        return leaves.stream().filter(c -> c.getApproved()).collect(Collectors.toList());
+        return leaves.stream()
+                .filter(Leave::getApproved)
+                .collect(Collectors.toList());
     }
 
 
@@ -111,13 +112,13 @@ public class LeaveServiceIMPL implements LeaveService {
     }
 
     @Override
-    public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id){
+    public Integer getTotalNumberOfDaysAvailableByEmployeeID(Long id) {
         Collection<Leave> leaves;
         leaves = listAllByEmployeeIDApproved(id);
         //nu iau in calcul o cerere care a fost inregistrata anul trecut, presupunem ca un concediu care e de pe un an pe altu e in doua cereri
-        leaves =  leaves.stream().filter(c -> (c.getStartDate().after(getFirstDateOfYear()) || (c.getStartDate().equals(getFirstDateOfYear())))).collect(Collectors.toList());
+        leaves = leaves.stream().filter(c -> (c.getStartDate().after(getFirstDateOfYear()) || (c.getStartDate().equals(getFirstDateOfYear())))).collect(Collectors.toList());
         int count = 0;
-        for (Leave leave: leaves
+        for (Leave leave : leaves
                 ) {
             count = count + leave.getNoDays();
 
@@ -142,10 +143,10 @@ public class LeaveServiceIMPL implements LeaveService {
         int count = 21;
         int years = noYears(employee);
         int i = 0;
-        while (i <= 5){
-            if (years - 2 > 0 ){
-                count = count +2;
-                years = years -2;
+        while (i <= 5) {
+            if (years - 2 > 0) {
+                count = count + 2;
+                years = years - 2;
             }
         }
 
@@ -164,19 +165,19 @@ public class LeaveServiceIMPL implements LeaveService {
         return !dao.findById(id).getApproved();
     }
 
-    public LocalDate getLocalDateFromDate(Date date){
+    public LocalDate getLocalDateFromDate(Date date) {
         return LocalDate.from(Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()));
     }
 
-    public int noYears(Employee employee){
+    public int noYears(Employee employee) {
         LocalDate now = LocalDate.now();
         LocalDate emplDate = getLocalDateFromDate(employee.getEmploymentDate());
         return now.getYear() - emplDate.getYear();
     }
 
-    public  LocalDate addworkingDays(Date date, int days){
+    public LocalDate addworkingDays(Date date, int days) {
         LocalDate lday = getLocalDateFromDate(date);
-        if (days < 1 ){
+        if (days < 1) {
             return lday;
         }
         LocalDate result = lday;
@@ -197,7 +198,7 @@ public class LeaveServiceIMPL implements LeaveService {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    public  Date getFirstDateOfYear(){
+    public Date getFirstDateOfYear() {
         LocalDate now = LocalDate.now(); // 2015-11-23
         LocalDate firstDay = now.with(firstDayOfYear());
         return getDateFromLocalDate(firstDay);

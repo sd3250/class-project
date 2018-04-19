@@ -30,8 +30,8 @@ public class EmployeeRestController {
     }
 
     @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id){
-        employeeService.delete(id);
+    public boolean delete(@PathVariable Long id){
+        return employeeService.delete(id);
     }
 
     @RequestMapping(value = "update/{id}", method = RequestMethod.POST)
